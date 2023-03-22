@@ -13,9 +13,11 @@ export default class LoginService {
       },
     });
 
-    console.log(result);
+    if (result === null) {
+      return result;
+    }
+
     const isPassword = compareSync(userPassword, result?.dataValues.password);
-    console.log(isPassword);
     if (!isPassword) {
       return null;
     }
