@@ -27,6 +27,7 @@ export default class LoginCrontroller {
   public role = async (req: Request, res: Response) => {
     const { data } = res.locals.user;
     const { role } = data;
+    console.log(role);
 
     res.status(200).json({ role });
   };

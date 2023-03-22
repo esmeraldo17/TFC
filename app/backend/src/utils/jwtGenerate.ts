@@ -10,6 +10,7 @@ const jwtConfig: SignOptions = {
 type Data = {
   id?: number,
   email: string,
+  role: string,
 };
 
 export default (data: Data) => {

@@ -13,6 +13,8 @@ export default class LoginService {
       },
     });
 
+    console.log(result);
+
     if (result === null) {
       return result;
     }
@@ -22,7 +24,7 @@ export default class LoginService {
       return null;
     }
 
-    const payload = { id: result?.dataValues.id, email: userEmail };
+    const payload = { id: result?.dataValues.id, email: userEmail, role: result.dataValues.role };
     const token = JwtGenerator(payload);
 
     return token;
