@@ -23,4 +23,11 @@ export default class LoginCrontroller {
     }
     res.status(200).json({ token });
   };
+
+  public role = async (req: Request, res: Response) => {
+    const { data } = res.locals.user;
+    const { role } = data;
+
+    res.status(200).json({ role });
+  };
 }
