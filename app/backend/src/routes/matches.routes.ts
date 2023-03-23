@@ -8,6 +8,6 @@ const validateToken = new ValidateToken();
 const router = Router();
 
 router.get('/matches', matchesController.get);
-router.get('/matches/:id/finish', validateToken.validateToken, matchesController.finish);
+router.patch('/matches/:id/finish', validateToken.validateToken, matchesController.finish);
 
 export default router;
