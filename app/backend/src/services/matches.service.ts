@@ -38,4 +38,27 @@ export default class MatchesService {
 
     return 'Updated';
   }
+
+  public async insert(
+    homeTeamGoals: string,
+    awayTeamGoals: string,
+    homeTeamId: string,
+    awayTeamId: string,
+  ): Promise<Matches[] | null> {
+    const homeTeam = await this.model.findByPk(homeTeamId);
+    const awayTeam = await this.model.findByPk(awayTeamId);
+
+    if (!homeTeam) return null;
+    if (!awayTeam) return null;
+
+    const { dataValues } = await this.model.create({
+      homeTeamId,
+      awayTeamId,
+      homeTeamGoals,
+      awayTeamGoals,
+      inProgress: true,
+    });
+
+    return dataValues;
+  }
 }
