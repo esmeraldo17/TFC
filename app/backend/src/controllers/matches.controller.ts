@@ -5,8 +5,8 @@ export default class MatchesController {
   constructor(private matchesService = new MatchesService()) {}
 
   public getAll = async (_req: Request, res: Response) => {
-    const teams = await this.matchesService.getAll();
+    const matches = await this.matchesService.getAll();
 
-    res.status(200).json(teams);
+    res.status(200).json(matches);
   };
 }
