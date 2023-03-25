@@ -1,70 +1,70 @@
 import Matches from '../database/models/Matches';
 import Team from '../database/models/Team';
 
-export default class LeaderboardFunctions {
+export default class AwayLeaderboardFunctions {
   public getName = (homeTeamId: number, result: Team[]) => {
     const teamName = result.filter((e) => e.id === homeTeamId);
     return teamName;
   };
 
   public Points = (matches: Matches[]) => {
-    let homeTeamPoints = 0;
+    let awayTeamPoints = 0;
     matches.forEach((match) => {
-      if (match.homeTeamGoals > match.awayTeamGoals) {
-        homeTeamPoints += 3;
+      if (match.awayTeamGoals > match.homeTeamGoals) {
+        awayTeamPoints += 3;
       }
 
-      if (match.homeTeamGoals === match.awayTeamGoals) {
-        homeTeamPoints += 1;
+      if (match.awayTeamGoals === match.homeTeamGoals) {
+        awayTeamPoints += 1;
       }
     });
-    return homeTeamPoints;
+    return awayTeamPoints;
   };
 
   public victories = (matches: Matches[]) => {
-    let homeTeamVictories = 0;
+    let awayTeamVictories = 0;
     matches.forEach((match) => {
-      if (match.homeTeamGoals > match.awayTeamGoals) {
-        homeTeamVictories += 1;
+      if (match.awayTeamGoals > match.homeTeamGoals) {
+        awayTeamVictories += 1;
       }
     });
-    return homeTeamVictories;
+    return awayTeamVictories;
   };
 
   public draws = (matches: Matches[]) => {
-    let homeTeamDrwas = 0;
+    let awayTeamDrwas = 0;
     matches.forEach((match) => {
-      if (match.homeTeamGoals === match.awayTeamGoals) {
-        homeTeamDrwas += 1;
+      if (match.awayTeamGoals === match.homeTeamGoals) {
+        awayTeamDrwas += 1;
       }
     });
-    return homeTeamDrwas;
+    return awayTeamDrwas;
   };
 
   public loses = (matches: Matches[]) => {
-    let homeTeamLoses = 0;
+    let awayTeamLoses = 0;
     matches.forEach((match) => {
-      if (match.homeTeamGoals < match.awayTeamGoals) {
-        homeTeamLoses += 1;
+      if (match.awayTeamGoals < match.homeTeamGoals) {
+        awayTeamLoses += 1;
       }
     });
-    return homeTeamLoses;
+    return awayTeamLoses;
   };
 
   public favorGoals = (matches: Matches[]) => {
-    let homeTeamFG = 0;
+    let awayTeamFG = 0;
     matches.forEach((match) => {
-      homeTeamFG += match.homeTeamGoals;
+      awayTeamFG += match.awayTeamGoals;
     });
-    return homeTeamFG;
+    return awayTeamFG;
   };
 
   public ownGoals = (matches: Matches[]) => {
-    let homeTeamOG = 0;
+    let awayTeamOG = 0;
     matches.forEach((match) => {
-      homeTeamOG += match.awayTeamGoals;
+      awayTeamOG += match.homeTeamGoals;
     });
-    return homeTeamOG;
+    return awayTeamOG;
   };
 
   public goalsBalance = (matches: Matches[]) => {
