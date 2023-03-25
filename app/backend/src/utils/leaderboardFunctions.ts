@@ -66,4 +66,14 @@ export default class LeaderboardFunctions {
     });
     return homeTeamOG;
   };
+
+  public goalsBalance = (matches: Matches[]) => {
+    const balance = this.favorGoals(matches) - this.ownGoals(matches);
+    return balance;
+  };
+
+  public efficiency = (matches: Matches[]) => {
+    const effi = ((this.Points(matches) / (matches.length * 3)) * 100).toFixed(2);
+    return effi;
+  };
 }
