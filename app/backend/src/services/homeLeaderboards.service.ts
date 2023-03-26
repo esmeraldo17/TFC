@@ -85,4 +85,14 @@ export default class HomeLeaderboardService {
     const result = leaderboard.sort(sort.sortByPoints);
     return result;
   }
+
+  public async getAll(): Promise<leaderboardResult[]> {
+    const homeLeaderboard = await this.homeLeaderboard();
+    const awayLeaderboard = await this.awayLeaderboard();
+    const leaderboard = [...homeLeaderboard, ...awayLeaderboard];
+    const sort = new Sort();
+
+    const result = leaderboard.sort(sort.sortByPoints);
+    return result;
+  }
 }

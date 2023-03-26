@@ -6,6 +6,10 @@ export default class LeaderboardController {
 
   public get = async (req: Request, res: Response) => {
     const urlInfo: string = req.url;
+    if (urlInfo === '/leaderboard') {
+      return res.status(200).json(await this.leaderboardService.getAll());
+    }
+
     if (urlInfo === '/leaderboard/home') {
       return res.status(200).json(await this.leaderboardService.getHome());
     }

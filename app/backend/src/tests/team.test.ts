@@ -51,6 +51,8 @@ describe('Testando a rota /teams', () => {
     }
   ]
 
+  const team = {id: 1, teamname: 'Vasco'};
+
   it('Testa FindAll', async () => {
     sinon.stub(Model, 'findAll').resolves(TeamList as Team[])
 
@@ -61,11 +63,15 @@ describe('Testando a rota /teams', () => {
   });
 
   it('Testa FindById', async () => {
-    sinon.stub(Model, 'findByPk').resolves(TeamList as unknown as Team)
+    sinon.stub(Model, 'findByPk').resolves(team as unknown as Team)
 
     const result = await chai.request(app).get('/teams/1');
 
     expect(result.status).to.deep.equal(200);
     expect(result.body).to.deep.equal({id: 1, teamname: 'Vasco'});
   });
+
+  afterEach(()=>{
+     sinon.restore();
+  })
 });
