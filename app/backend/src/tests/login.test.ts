@@ -70,6 +70,18 @@ describe('Seu teste', () => {
     expect(result.body).to.deep.equal({ message: 'Invalid email or password'})
   });
 
+  it('Testa login correto', async () => {
+    const body = { email: 'albert@gmail.com', password: 'mypassword'}
+    sinon.stub(Model, 'findAll').resolves([userList[0]]);
+    sinon.stub(bcrypt, 'compareSync').resolves(true);
+
+    const result = await chai.request(app).post('/login').send(body);
+
+    expect(result.status).to.be.equal(200);
+    expect(result.body).to.haveOwnProperty('token')
+
+  });
+
   afterEach(()=>{
     sinon.restore();
   })
